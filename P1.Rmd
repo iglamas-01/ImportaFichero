@@ -286,6 +286,15 @@ Ahora guardamos el DataFrame.
 save(df_bsr, file="data/results/df_bsr.RData")
 ```
 
+Con las funciones que hemos tratado previamente podemos inspeccionar los datos
+
+```{r}
+str(df_bsr)
+head(df_bsr)
+tail(df_bsr)
+summary(df_bsr)
+```
+
 # 3. Fichero SPSS *PsychBike.sav* 
 
 ## 4.1 Importación del fichero
@@ -297,6 +306,44 @@ install.packages("haven")
 library(haven)
 ```
 
-```{r}
+Leemos el fichero y lo guardamos.
 
+```{r}
+fname <- "data/PsychBike.sav"
+df_PB <- read_sav(fname)
+df_PB
+save(df_PB, file="data/results/df_pb.RData")
+```
+
+De nuevo podemos inspeccionar los datos al igual que hemos hecho con los ejemplos anteriores.
+
+```{r}
+str(df_PB)
+head(df_PB)
+tail(df_PB)
+#summary(df_PB) 
+```
+
+No realizamos el summary completo porque da de nuevo problema con el tipo de dato de la fecha.
+
+# 4. Fichero data *iris.zip*
+
+## 4.1 Descomprimir el fichero
+
+Empleamos la función unzip para descomprimir el archivo.
+
+```{r}
+unzip("data/iris.zip", exdir="./data")
+```
+
+# 5. Fichero data *iris.data*
+
+## 5.1 Importación del fichero
+
+Utilizamos la función read_table para leer el archivo
+
+```{r}
+filename = "data/iris.data"
+df_iris <- read_table(filename)
+save(df_iris, file="data/results/df_iris.RData")
 ```
