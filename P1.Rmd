@@ -279,3 +279,9 @@ library(readr)
 df_bsr <- read_csv(filename)
 df_bsr
 ```
+
+Ahora guardamos el DataFrame.
+
+```{r}
+save(df_bsr, file="data/results/df_bsr.RData")
+```
