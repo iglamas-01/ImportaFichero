@@ -285,3 +285,18 @@ Ahora guardamos el DataFrame.
 ```{r}
 save(df_bsr, file="data/results/df_bsr.RData")
 ```
+
+# 3. Fichero SPSS *PsychBike.sav* 
+
+## 4.1 Importación del fichero
+
+Utilizamos la librería haven.
+
+```{r}
+install.packages("haven")
+library(haven)
+```
+
+```{r}
+
+```
