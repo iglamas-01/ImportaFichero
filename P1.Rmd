@@ -388,5 +388,14 @@ summary(df_FC)
 filename <- "./data/iris_json.json"
 df_irisjson<-read_json(filename, simplifyVector = TRUE)
 df_irisfromjson<-fromJSON(filename)
+save(df_irisjson, file="data/results/iris.RData")
+```
 
+La diferencia es que no hace falta poner el simplifyVector
+
+```{r}
+str(df_irisjson)
+head(df_irisjson)
+tail(df_irisjson)
+summary(df_irisjson) 
 ```
