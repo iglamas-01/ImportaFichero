@@ -344,6 +344,15 @@ Utilizamos la función read_table para leer el archivo
 
 ```{r}
 filename = "data/iris.data"
-df_iris <- read_table(filename)
+df_iris <- read.table(filename, sep = ",")
+colnames(df_iris)<-c("sepal length", "sepal width", "petal length", "petal width", "class")
+df_iris
 save(df_iris, file="data/results/df_iris.RData")
+```
+
+```{r}
+str(df_iris)
+head(df_iris)
+tail(df_iris)
+summary(df_iris) 
 ```
