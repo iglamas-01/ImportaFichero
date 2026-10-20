@@ -235,4 +235,20 @@ Vamos a utilizar una serie de funciones para realizar un primer análisis de nue
 str(data1)
 ```
 
-Con la función str podemos comprobar el tipo de objeto para cada columna del DataFrame.
+Con la función str podemos comprobar el tipo de objeto para cada columna del DataFrame. Es interesante ver aquí las modificaciones en el formato de la fecha y la hora que hemos realizado anteriormente.
+
+```{r}
+head(data1)
+```
+
+La función head nos muestra las 6 primeras filas del DataFrame.
+
+```{r}
+tail(data1)
+```
+
+La función tail nos muestra las 6 últimas filas.
+
+```{r}
+summary(data1)
+```
