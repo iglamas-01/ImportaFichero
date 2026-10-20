@@ -346,7 +346,6 @@ Utilizamos la función read_table para leer el archivo
 filename = "data/iris.data"
 df_iris <- read.table(filename, sep = ",")
 colnames(df_iris)<-c("sepal length", "sepal width", "petal length", "petal width", "class")
-df_iris
 save(df_iris, file="data/results/df_iris.RData")
 ```
 
@@ -355,4 +354,28 @@ str(df_iris)
 head(df_iris)
 tail(df_iris)
 summary(df_iris) 
+```
+
+# 6. Fichero JSON *FileCodificado.json*
+
+## 6.1 Importación del fichero
+
+## 6.2 Importar el fichero `FileCodificado.json`
+
+```{r}
+install.packages("jsonlite")
+library(jsonlite)
+```
+
+```{r}
+filename <- 'data/FileCodificado.json'
+df_FC<-read_json(filename, simplifyVector = TRUE)
+save(df_FC, file="data/results/FileCodificado.RData")
+```
+
+```{r}
+str(df_FC)
+head(df_FC)
+tail(df_FC)
+summary(df_FC) 
 ```
