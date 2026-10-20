@@ -216,4 +216,23 @@ data1
 
 ```
 
-Finalmente guardamos
+Finalmente guardamos el DataFrame siguiendo las instrucciones del enunciado.
+
+```{r}
+if(!file.exists("data/results")){
+  dir.create("data/results")
+}
+
+save(data1, file="data/results/data1.RData")
+
+```
+
+## 1.2 Inspección de los datos
+
+Vamos a utilizar una serie de funciones para realizar un primer análisis de nuestros datos.
+
+```{r}
+str(data1)
+```
+
+Con la función str podemos comprobar el tipo de objeto para cada columna del DataFrame.
