@@ -1,54 +1,9 @@
 ---
 title: "Práctica 1"
+subtitle: "Análisis exploratorio de datos. Máster en Ciencia de Datos- UV"
 author: "Ignacio Lacruz Mascarós"
 date: "`r Sys.Date()`"
-output:
-  bookdown::pdf_document2:
-    toc: true
-    toc_depth: 3
-    number_sections: true
-    figure_caption: "Figura" # Referencias en castellano
-    table_caption: "Tabla"
-  html_document:
-    echo: true
-    number_sections: true
-    theme: lumen
-    toc: true
-  html_notebook:
-    echo: true
-    number_sections: true
-    toc: true
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
-  bookdown::html_document2:
-    echo: true
-    number_sections: true
-    theme: spacelab
-    toc: true
-    figure_caption: "Figura"
-    table_caption: "Tabla"
-always_allow_html: true
-params:
-  lang: ES
-lang: "`r switch(params$lang, ES = 'es-ES', EN = 'en-US')`"
-subtitle: "Análisis exploratorio de datos. Máster en Ciencia de Datos- UV"
-language:
-  label:
-    fig: 'Figura '
-    tab: 'Tabla '
-    eq: 'Ecuación '
-    thm: 'Teorema '
-    lem: 'Lema '
-    def: 'Definición '
-    cor: 'Corolario '
-    prp: 'Proposición '
-    exm: 'Ejemplo '
-    exr: 'Ejercicio '
-    proof: 'Demostración. '
-    remark: 'Nota: '
-    solution: 'Solución. '
+output: pdf_document
 ---
 
 ```{r setup, cache = F, echo = F, message = F, warning = F, tidy = F}
@@ -165,11 +120,13 @@ pacman::p_load(
      # tablas for para presentaciones
      #########################
      knitr,            # generación de reportes y tablas HTML con R Markdown 
-     flextable        # tablas HTML tables
+     flextable,        # tablas HTML tables
      #DT,              # tablas HTML (alternativa)
      #gt,              # tablas HTML (alternativa)
      #huxtable,        # tablas HTML (alternativa) 
-     
+    hms, 
+    haven, 
+    jsonlite
 )
 
 ```
@@ -188,22 +145,15 @@ fname <- 'data/DFP1_11122015 124700.csv'
 
 data1_base<-read.csv(fname, sep = "\t")
 data1_readr<-read_delim(fname, delim = "\t")
-data1_base
-data1_readr
 ```
 
 Podemos observar como para el DataFrame importado a partir de la función de la librería readr tiene la hora en un formato especial, mientras que el importado a partir de base la muestra como character.
 
 ```{r}
 data1<-read.csv(fname, sep = "\t", stringsAsFactors = F)
-data1
 ```
 
-Vamos a convertir la fecha y la hora de este último DataFrame a los formatos que deseamos. Primero instalamos el paquete necesario.
-
-```{r}
-install.packages("hms")
-```
+Vamos a convertir la fecha y la hora de este último DataFrame a los formatos que deseamos. Todos los paquetes necesarios para la compilación del documento se instalarán al ejecutar los chunks iniciales.
 
 A continuación realizamos la conversión.
 
@@ -212,8 +162,6 @@ library(hms)
 
 data1$FECHA<-as.POSIXlt(data1$FECHA,format='%d/%m/%Y')
 data1$HORA<-as.hms(data1$HORA)
-data1
-
 ```
 
 Finalmente guardamos el DataFrame siguiendo las instrucciones del enunciado.
@@ -262,22 +210,13 @@ La función summary nos proporciona una serie de valores estadísticos para ente
 
 ## 2.1 Importación del fichero
 
-Primero descargamos el Dataset.
-
-```{r}
-filename <- "data/bakery_sales_revised.csv"
-
-download.file(url="https://www.kaggle.com/datasets/akashdeepkuila/bakery?resource=download", destfile = filename)
-
-```
-
-A continuación lo leemos, esta vez trabajando con la librería readr.
+Primero descargamos el Dataset y lo leemos, esta vez trabajando con la librería readr.
 
 ```{r}
 library(readr)
+filename <- "./data/bakery_sales_revised.csv"
 
 df_bsr <- read_csv(filename)
-df_bsr
 ```
 
 Ahora guardamos el DataFrame.
@@ -295,14 +234,13 @@ tail(df_bsr)
 summary(df_bsr)
 ```
 
-# 3. Fichero SPSS *PsychBike.sav* 
+# 3. Fichero SPSS *PsychBike.sav*
 
 ## 4.1 Importación del fichero
 
 Utilizamos la librería haven.
 
 ```{r}
-install.packages("haven")
 library(haven)
 ```
 
@@ -311,7 +249,6 @@ Leemos el fichero y lo guardamos.
 ```{r}
 fname <- "data/PsychBike.sav"
 df_PB <- read_sav(fname)
-df_PB
 save(df_PB, file="data/results/df_pb.RData")
 ```
 
@@ -363,7 +300,6 @@ summary(df_iris)
 ## 6.2 Importar el fichero `FileCodificado.json`
 
 ```{r}
-install.packages("jsonlite")
 library(jsonlite)
 ```
 
