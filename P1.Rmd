@@ -379,3 +379,14 @@ head(df_FC)
 tail(df_FC)
 summary(df_FC) 
 ```
+
+# 7. Fichero JSON *iris_json.json*
+
+## 7.1 Importar el fichero `iris_json.json`
+
+```{r}
+filename <- "./data/iris_json.json"
+df_irisjson<-read_json(filename, simplifyVector = TRUE)
+df_irisfromjson<-fromJSON(filename)
+
+```
