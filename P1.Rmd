@@ -250,5 +250,32 @@ tail(data1)
 La función tail nos muestra las 6 últimas filas.
 
 ```{r}
-summary(data1)
+summary(data1$FECHA)
+summary(data1$Altura)
+summary(data1$Combinacion_Canya)
+summary(data1$Temperatura)
+```
+
+La función summary nos proporciona una serie de valores estadísticos para entender mejor la distribución de nuestras variables. Al ejecutarlo sobre la columna de hora da error por el formato de esta.
+
+# 2. Fichero *Transactions from a Bakery* (Kaggle)
+
+## 2.1 Importación del fichero
+
+Primero descargamos el Dataset.
+
+```{r}
+filename <- "data/bakery_sales_revised.csv"
+
+download.file(url="https://www.kaggle.com/datasets/akashdeepkuila/bakery?resource=download", destfile = filename)
+
+```
+
+A continuación lo leemos, esta vez trabajando con la librería readr.
+
+```{r}
+library(readr)
+
+df_bsr <- read_csv(filename)
+df_bsr
 ```
